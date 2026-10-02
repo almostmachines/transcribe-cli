@@ -33,7 +33,7 @@ uv pip install -e .
 
 ## Authentication
 
-The CLI first looks for John's dedicated variable and then the conventional OpenRouter variable:
+The CLI first looks for a dedicated variable and then the conventional OpenRouter variable:
 
 ```bash
 export OPENROUTER_TRANSCRIPTION_KEY=sk-or-v1-...
@@ -60,7 +60,7 @@ transcribe call.mp3 -o call.json --word-timestamps
 
 # Language and vocabulary hints
 transcribe recording.ogg -l en \
-  --prompt 'Names and terms: John, Faith, Pi, OpenRouter.'
+  --prompt 'Names and terms: Pi, OpenRouter.'
 
 # Process chunks in parallel
 transcribe long-recording.mkv -o transcript.txt --chunk-seconds 600 --jobs 3
