@@ -1,6 +1,6 @@
 # openrouter-transcribe-cli
 
-A polished, dependency-light command-line transcription tool for hosted speech-to-text models through [OpenRouter](https://openrouter.ai/). The installed command is simply **`transcribe`**.
+A polished, dependency-light command-line transcription tool for hosted speech-to-text models through [OpenRouter](https://openrouter.ai/). The installed command is **`transcribe-cli`**.
 
 It defaults to [`openai/gpt-transcribe`](https://openrouter.ai/openai/gpt-transcribe), while `--model` makes it easy to switch providers without changing the workflow.
 
@@ -46,39 +46,39 @@ The key is only sent in the HTTPS `Authorization` header. There is intentionally
 
 ```bash
 # Print a transcript to stdout
-transcribe voice-note.m4a
+transcribe-cli voice-note.m4a
 
 # Write text to a file
-transcribe meeting.mp4 -o meeting.txt
+transcribe-cli meeting.mp4 -o meeting.txt
 
 # Subtitles; the format is inferred from the suffix
-transcribe interview.mov -o interview.srt
-transcribe interview.mov -o interview.vtt
+transcribe-cli interview.mov -o interview.srt
+transcribe-cli interview.mov -o interview.vtt
 
 # Rich metadata and word timestamps
-transcribe call.mp3 -o call.json --word-timestamps
+transcribe-cli call.mp3 -o call.json --word-timestamps
 
 # Language and vocabulary hints
-transcribe recording.ogg -l en \
+transcribe-cli recording.ogg -l en \
   --prompt 'Names and terms: Pi, OpenRouter.'
 
 # Process chunks in parallel
-transcribe long-recording.mkv -o transcript.txt --chunk-seconds 600 --jobs 3
+transcribe-cli long-recording.mkv -o transcript.txt --chunk-seconds 600 --jobs 3
 
 # Batch mode writes one output per input
-transcribe *.m4a --output-dir transcripts --format txt
+transcribe-cli *.m4a --output-dir transcripts --format txt
 
 # Pipe media in
-cat voice-note.opus | transcribe -
+cat voice-note.opus | transcribe-cli -
 
 # Inspect the plan without spending anything
-transcribe meeting.mp4 -o meeting.srt --dry-run
+transcribe-cli meeting.mp4 -o meeting.srt --dry-run
 
 # Discover current STT choices on OpenRouter
-transcribe --list-models
+transcribe-cli --list-models
 ```
 
-Run `transcribe --help` for every option.
+Run `transcribe-cli --help` for every option.
 
 ## Output behavior
 
@@ -101,9 +101,9 @@ Chunks are sequential by default. `--jobs N` can reduce wall-clock time, but may
 Choose any model supported by OpenRouter's speech-to-text endpoint:
 
 ```bash
-transcribe audio.wav --model openai/gpt-transcribe
-transcribe audio.wav --model deepgram/nova-3
-transcribe audio.wav --model mistralai/voxtral-mini-transcribe
+transcribe-cli audio.wav --model openai/gpt-transcribe
+transcribe-cli audio.wav --model deepgram/nova-3
+transcribe-cli audio.wav --model mistralai/voxtral-mini-transcribe
 ```
 
 Some providers do not implement verbose or word-level timestamps. For those models, the CLI automatically falls back to chunk-level timestamps instead of failing the whole job.

@@ -102,7 +102,7 @@ class Reporter:
 
 def build_parser() -> argparse.ArgumentParser:
     parser = argparse.ArgumentParser(
-        prog="transcribe",
+        prog="transcribe-cli",
         description="Transcribe audio or video with hosted models through OpenRouter.",
         formatter_class=argparse.ArgumentDefaultsHelpFormatter,
     )
@@ -131,7 +131,7 @@ def build_parser() -> argparse.ArgumentParser:
     parser.add_argument("--list-models", action="store_true", help="List OpenRouter speech-to-text models and exit.")
     parser.add_argument("--models-json", action="store_true", help="With --list-models, emit machine-readable JSON.")
     parser.add_argument("-q", "--quiet", action="store_true", help="Suppress status and usage messages.")
-    parser.add_argument("--version", action="version", version=f"transcribe {__version__}")
+    parser.add_argument("--version", action="version", version=f"transcribe-cli {__version__}")
     return parser
 
 
@@ -145,9 +145,9 @@ def main(argv: Sequence[str] | None = None) -> int:
             return list_models(args)
         return run(args, reporter)
     except CliError as exc:
-        parser.exit(2, f"transcribe: error: {exc}\n")
+        parser.exit(2, f"transcribe-cli: error: {exc}\n")
     except KeyboardInterrupt:
-        parser.exit(130, "transcribe: interrupted\n")
+        parser.exit(130, "transcribe-cli: interrupted\n")
     return 0
 
 

@@ -22,7 +22,7 @@ classifiers = [
 dependencies = []
 
 [project.scripts]
-transcribe = "transcribe_cli.cli:main"
+transcribe-cli = "transcribe_cli.cli:main"
 
 [project.urls]
 Homepage = "https://github.com/almostmachines/openrouter-transcribe-cli"
